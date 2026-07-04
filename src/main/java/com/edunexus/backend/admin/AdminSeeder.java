@@ -40,7 +40,23 @@ public class AdminSeeder {
                 8,
                 0,
                 "M.A B.Ed");
+
+            seedFallbackDemoLogin(loginRepo, encoder, "admin01", "admin123", "admin");
+            seedFallbackDemoLogin(loginRepo, encoder, "teacher01", "teach123", "teacher");
+            seedFallbackDemoLogin(loginRepo, encoder, "student01", "stud123", "student");
         };
+    }
+
+    private void seedFallbackDemoLogin(LoginRepository loginRepo, PasswordEncoder encoder, String userId, String rawPassword, String role) {
+        if (!loginRepo.existsById(userId)) {
+            Login login = new Login();
+            login.setEdu_id(userId);
+            login.setEdu_pass(encoder.encode(rawPassword));
+            login.setRole(role);
+            login.setMustChangePassword(false);
+            loginRepo.save(login);
+            System.out.println("✅ Demo login seeded: " + userId);
+        }
     }
 
     private void seedOneAdmin(
