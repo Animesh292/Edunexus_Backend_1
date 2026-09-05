@@ -1,4 +1,4 @@
-// renamed for Java filename case sensitivity
+// ===================== PtmController.java (UPDATED: student fetching only) =====================
 package com.edunexus.backend.ptm;
 
 import java.util.ArrayList;
@@ -153,4 +153,32 @@ public class PtmController {
     List<PtmSession> merged = new ArrayList<>();
     for (PtmSession p : oneToOne) merged.add(p);
 
-{
+    for (PtmSession p : classMeetings) {
+      boolean exists = false;
+      for (PtmSession x : merged) {
+        if (x.getId() != null && p.getId() != null && x.getId().equals(p.getId())) {
+          exists = true;
+          break;
+        }
+      }
+      if (!exists) merged.add(p);
+    }
+
+    // Optional: sort by date+startTime if you want (can also sort in frontend)
+    // merged.sort((a,b) -> (a.getPtmDate()+" "+a.getStartTime()).compareTo(b.getPtmDate()+" "+b.getStartTime()));
+
+    return merged;
+  }
+
+  // ===== TEACHER fetch =====
+  @GetMapping("/teacher/{teacherId}")
+  public List<PtmSession> getByTeacher(@PathVariable String teacherId) {
+    return repo.findByTeacherId(teacherId);
+  }
+
+  // ===== ADMIN fetch =====
+  @GetMapping("/admin/{adminId}")
+  public List<PtmSession> getByAdmin(@PathVariable String adminId) {
+    return repo.findByAdminId(adminId);
+  }
+}
