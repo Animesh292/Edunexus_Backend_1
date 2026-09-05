@@ -10,3 +10,13 @@ services:
         value: 10000
       - key: JAVA_VERSION
         value: 21
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: SPRING_MAIL_USERNAME
+        sync: false
+      - key: SPRING_MAIL_PASSWORD
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        value: http://localhost:5173,http://localhost:3000,https://animesh292.github.io,https://*.vercel.app,https://*.netlify.app
