@@ -1,16 +1,6 @@
+// DEPRECATED placeholder: original PTMRepository renamed to PtmRepository
+// Kept as an empty placeholder to avoid duplicate public type during build.
+// The active repository interface lives at src/main/java/com/edunexus/backend/ptm/PtmRepository.java
 package com.edunexus.backend.ptm;
 
-import com.edunexus.backend.ptm.PtmSession;
-import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
-
-public interface PtmRepository extends JpaRepository<PtmSession,Long> {
-
- List<PtmSession> findByClassNo(Integer classNo);
-
- List<PtmSession> findByStudentId(String studentId);
-
- List<PtmSession> findByAdminId(String adminId);
-
- List<PtmSession> findByTeacherId(String teacherId);
-}
+// No public types here intentionally.
