@@ -24,6 +24,9 @@ public class SecurityConfig {
                 // preflight
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
+                // Render/browser root request and error dispatch
+                .requestMatchers("/", "/error", "/favicon.ico").permitAll()
+
                 // public uploads (images)
                 .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
 
